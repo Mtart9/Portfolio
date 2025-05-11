@@ -34,7 +34,7 @@ Note: Performance may vary depending on market volatility and the length of the 
 
 ├── Time_Series_Forecasting.ipynb  # Jupyter notebook version of code for Readability\
 ├── Time_Series_Forecasting.py     # Python code and analysis\
-├── requirements.txt               # List of required Python packages
+├── requirements.txt               # List of required Python packages\
 ├── README.md                      # Project documentation
 
 ## 🧠 What You’ll Learn
@@ -59,6 +59,6 @@ Open Time_Series_Forecasting.ipynb in Jupyter Notebook or VS Code
 
 ## 📬 Contact
 
-Michael Tartamella  
-📧 mtartamella117@gmail.com  
-🔗 linkedin.com/in/michael-tartamella  
+Michael Tartamella\
+📧 mtartamella117@gmail.com\
+🔗 linkedin.com/in/michael-tartamella
