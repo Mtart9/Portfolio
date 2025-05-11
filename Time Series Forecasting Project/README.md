@@ -24,9 +24,9 @@ This project uses a Long Short-Term Memory (LSTM) neural network to forecast the
 
 Example results (depending on training split and time period):
 
-RMSE: 15.56
-MAE: 11.93
-R² Score: 0.9545
+RMSE: 15.56  
+MAE: 11.93  
+R² Score: 0.9545  
 
 Note: Performance may vary depending on market volatility and the length of the dataset used.
 
@@ -59,6 +59,6 @@ Open Time_Series_Forecasting.ipynb in Jupyter Notebook or VS Code
 
 ## 📬 Contact
 
-Michael Tartamella
-📧 mtartamella117@gmail.com
-🔗 linkedin.com/in/michael-tartamella
+Michael Tartamella  
+📧 mtartamella117@gmail.com  
+🔗 linkedin.com/in/michael-tartamella  
