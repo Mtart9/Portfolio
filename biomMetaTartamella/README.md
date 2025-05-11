@@ -20,11 +20,11 @@ This package includes:
 ---
 
 ## 🧪 Repository Contents
-├── biomMetaTartamella/ # Fully structured R package/
-├── biomMetaTartamella_0.0.0.9000.tar.gz # Compressed version of the package/
-├── Project_Functions.docx # Summary of implemented functions/
-├── function_definitions.Rmd # RMarkdown for function development/
-├── function_testing_environment.Rmd # RMarkdown for testing functions/
+├── biomMetaTartamella/ # Fully structured R package\
+├── biomMetaTartamella_0.0.0.9000.tar.gz # Compressed version of the package\
+├── Project_Functions.docx # Summary of implemented functions\
+├── function_definitions.Rmd # RMarkdown for function development\
+├── function_testing_environment.Rmd # RMarkdown for testing functions\
 ├── README.md # This file
 
 ---
