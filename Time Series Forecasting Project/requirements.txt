@@ -1,6 +1,5 @@
 numpy
-pandas
-yfinance
-tensorflow
 matplotlib
+yfinance
 scikit-learn
+tensorflow
