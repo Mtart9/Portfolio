@@ -37,7 +37,7 @@ You can install this package locally by using:
 devtools::install_local("biomMetaTartamella_0.0.0.9000.tar.gz")
 ```
 ## 🚀 Example Usage
-
+```r
 library(biomMetaTartamella)
 
 # Run ANOVA on a dataset with 3+ groups
@@ -46,7 +46,7 @@ print(result)
 
 # Pool p-values using Stouffer's method
 stouffer_result <- poolP.stouffer(result$p.values)
-
+```
 📄 License
 
 This project is licensed for academic and personal use. MIT License recommended if publishing more broadly.
