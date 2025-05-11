@@ -48,7 +48,7 @@ Note: Performance may vary depending on market volatility and the length of the 
 
 1. Clone this repo:
    ```bash
-   git clone https://github.com/yourusername/Time Series Forecasting Project.git
+   git clone https://github.com/Mtart9/Portfolio.git
    cd Time Series Forecasting Project
 
 2. Install dependencies:
