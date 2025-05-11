@@ -47,11 +47,12 @@ print(result)
 # Pool p-values using Stouffer's method
 stouffer_result <- poolP.stouffer(result$p.values)
 ```
-📄 License
+## 📄 License
 
 This project is licensed for academic and personal use. MIT License recommended if publishing more broadly.
 
-👤 Author
+## 📬 Contact
 
-📫 mtartamella117@gmail.com\
+Michael Tartamella\
+📧 mtartamella117@gmail.com\
 🔗 linkedin.com/in/michael-tartamella
