@@ -1,0 +1,70 @@
+---
+title: 'AMS 597 Project'
+author: "Michael Tartamella"
+date: "5/5/2023"
+output:
+  word_document: default
+---
+
+Reads in our R package which we have created.
+```{r}
+library(biomMetaTartamella)
+```
+
+Simulates data to test our functions.
+```{r}
+set.seed(123)
+p <- 100
+data1 <- data.frame(group = sample(1:3, 200, replace = TRUE),
+matrix(rnorm(p * 200), ncol = p))
+data2 <- data.frame(group = sample(1:2, 150, replace = TRUE),
+matrix(rnorm(p * 150), ncol = p))
+data3 <- data.frame(group = sample(1:4, 300, replace = TRUE),
+matrix(sample(0:2, size = 300 * p, replace = TRUE),
+ncol = p))
+colnames(data1) <- c("group", paste("gene", 1:p, sep = ""))
+colnames(data2) = colnames(data3) <- colnames(data1)
+input.data <- list(Data1 = data1, Data2 = data2, Data3 = data3)
+```
+
+Displays number of observations of each group across the three data sets.
+```{r}
+table(input.data$Data1$group)
+table(input.data$Data2$group)
+table(input.data$Data3$group)
+```
+First, we use three different functions to generate our p-values from each of our three different data sets.  We store these values into three different variables.  Next, I combine these p-values into one variable for ease of access, along their respective weights into one variable.  Then, I preallocate space to hold p-values for each one of our pooled p-value methods.  Next, I run a for loop to iterate through all our biomarkers using every single function created to pool our p-values and store I store these into their respective variable.  Finally, I test my "adjust" function on every one of our pooled p-values from each of the tests.
+```{r}
+pval1 <- pvals.manyGroups.anova.kw(data1)
+pval2 <- pvals.twoGroups.t.wilcoxon(data2)
+pval3 <- pvals.categorical.fisher.chisquared(data3)
+
+combined.pvals <- cbind(pval1$p.value, pval2$p.value, pval3$p.value)
+combined.n <- cbind(pval1$n, pval2$n, pval3$n)
+
+fisher.pvalues <- numeric(nrow(combined.pvals))
+stouffer.pvalues <- numeric(nrow(combined.pvals))
+weighted.stouffer.pvalues <- numeric(nrow(combined.pvals))
+lancaster.pvalues <- numeric(nrow(combined.pvals))
+minp.pvalues <- numeric(nrow(combined.pvals))
+maxp.pvalues <- numeric(nrow(combined.pvals))
+weighted.fisher.pvalues <- numeric(nrow(combined.pvals))
+for (i in 1:nrow(combined.pvals))
+{
+  fisher.pvalues[i] <- fisher.pool(combined.pvals[i, ])
+  stouffer.pvalues[i] <- stouffer.pool(combined.pvals[i, ])
+  weighted.stouffer.pvalues[i] <- weighted.stouffer.pool(combined.pvals[i, ], combined.n)
+  lancaster.pvalues[i] <- lancaster.pool(combined.pvals[i, ], combined.n)
+  minp.pvalues[i] <- minp.pool(combined.pvals[i, ])
+  maxp.pvalues[i] <- maxp.pool(combined.pvals[i, ])
+  weighted.fisher.pvalues[i] <- weighted.fisher.pool(combined.pvals[i, ])
+}
+
+adjusted.fisher.pvalues <- adjust(fisher.pvalues)
+adjusted.stouffer.pvalues <- adjust(stouffer.pvalues)
+adjusted.weighted.stouffer.pvalues <- adjust(weighted.stouffer.pvalues)
+adjusted.lancaster.pvalues <- adjust(lancaster.pvalues)
+adjusted.min.p.pvalues <- adjust(minp.pvalues)
+adjusted.max.p.pvalues <- adjust(maxp.pvalues)
+adjusted.weighted.fisher.pvalues <- adjust(weighted.fisher.pvalues)
+```

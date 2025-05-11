@@ -1,0 +1,15 @@
+Package: biomMetaTartamella
+Title: Meta Analysis
+Version: 0.0.0.9000
+Authors@R: 
+    person("Michael", "Tartamella", , "michael.tartamella@stonybrook.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Aggregating evidence from multiple data sources
+    Functions for generating p-values from data sets
+    Functions to pool p-values using different methods
+    Method of adjusting p-values for multiple hypothesis testing
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

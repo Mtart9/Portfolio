@@ -1,0 +1,39 @@
+#' Extracts p-values from a data set with categorical data
+#'
+#' @description
+#' The function, "pvals.categorical.fisher.chisquared", generates p-values for each biomarker in the situation where we categorical data.  Our function first reads in the data and a value for a threshold which defaults to 5 if the user does not enter a value for this parameter.  We next find the total number of biomarkers our data contains.  We then preallocate this amount of p-values.  Next, I use a "For" loop which runs from 1 to the number of biomarkers we have.  Inside this loop we iterate through all the biomarkers of our data and for each one we first check if the minimum expected count for each group of the biomarker.  If the value of the minimum expected count for the biomarker is less than or equal to the parameter, "threshold", we use Fisher's exact test to generate our p-value for the biomarker.  If the value of the minimum expected count for the biomarker is greater than the parameter, "threshold", we use chi-squared test to generate our p-value for the biomarker.  After we do this for every biomarker we return both the p-values for each biomarker and the total number of observations for each biomarker in the form of a list.
+#'
+#' @param data The data set with biomarkers which you want to extract p-values
+#' @param threshold A value for threshold for when we decide to use f.test vs. chi.test
+#'
+#' @return Returns p-values for each biomarker of by choosing between Fisher’s exact tests or chi-squared tests and number of observations of the data set.
+#' @export
+#'
+#' @examples
+#' p <- 100
+#' data3 <- data.frame(group = sample(1:4, 300, replace = TRUE), matrix(sample(0:2, size = 300 * p, replace = TRUE), ncol = p))
+#' colnames(data3) <- c("group", paste("gene", 1:p, sep = ""))
+#' pval3 <- pvals.categorical.fisher.chisquared(data3)
+#' print(pval3)
+
+pvals.categorical.fisher.chisquared <- function(data, threshold = 5)
+{
+  k <- ncol(data) - 1
+  p.values <- numeric(k)
+  for (i in 1:k)
+  {
+    nam <- paste("gene", i, sep = "")
+    min.expected.count <- min(table(data[[nam]], data$group))
+    if (min.expected.count <= threshold)
+    {
+      f.test <- fisher.test(data[[nam]], data$group)
+      p.values[i] <- f.test$p.value
+    }
+    else
+    {
+      chi.test <- chisq.test(data[[nam]], data$group)
+      p.values[i] <- chi.test$p.value
+    }
+  }
+  return(list(p.value=p.values, n=nrow(data)))
+}

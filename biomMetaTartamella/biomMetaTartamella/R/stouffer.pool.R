@@ -1,0 +1,25 @@
+#' Stouffer's Method for Pooled P-values
+#'
+#' @description
+#' The function, "stouffer.pool", reads in the p-values for a specific biomarker.  First, we find the total number of p-values sent to the function and store this information into a variable, 'k'.  We then create a variable "stat" to hold the value \eqn{\sum_{i=1}^{k} \phi^{-1}(p_i) / \sqrt{k}}.  We generate our pooled p-value utilizing normal distribution.  Finally, we return the pooled p-value for the biomarker.
+#'
+#' @param p.values All the p-values for a specific biomarker
+#'
+#' @return Returns pooled p-value using Stouffer’s method.
+#' @export
+#'
+#' @references Chang, L., Lin, H., Sibille, E., & Tseng, G. C. (2013). Meta-analysis methods for combining multiple expression profiles: comparisons, statistical characterization and an application guideline. BMC Bioinformatics, 14(1).
+#' https://doi.org/10.1186/1471-2105-14-368
+#'
+#' @examples
+#' pval <- c(.05, .5, .75)
+#' pooled.pval <- stouffer.pool(pval)
+#' print(pooled.pval)
+
+stouffer.pool <- function(p.values)
+{
+  k <- length(p.values)
+  stat <- sum(qnorm(p.values, lower.tail = FALSE)) / sqrt(k)
+  p.pooled <- pnorm(stat, lower.tail = FALSE)
+  return(p.pooled)
+}
