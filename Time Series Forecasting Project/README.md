@@ -32,8 +32,8 @@ Note: Performance may vary depending on market volatility and the length of the 
 
 ## 📂 File Structure
 
-├── Time_Series_Forecasting.ipynb  # Jupyter notebook version of code for Readability
-├── Time_Series_Forecasting.py     # Python code and analysis
+├── Time_Series_Forecasting.ipynb  # Jupyter notebook version of code for Readability\
+├── Time_Series_Forecasting.py     # Python code and analysis\
 ├── requirements.txt               # List of required Python packages
 ├── README.md                      # Project documentation
 
