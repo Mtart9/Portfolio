@@ -53,8 +53,5 @@ This project is licensed for academic and personal use. MIT License recommended 
 
 👤 Author
 
-Michael Tartamella
-M.S. Applied Mathematics & Statistics
-Stony Brook University
-📫 mtartamella117@gmail.com
+📫 mtartamella117@gmail.com\
 🔗 linkedin.com/in/michael-tartamella
