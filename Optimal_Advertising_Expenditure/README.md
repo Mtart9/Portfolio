@@ -20,7 +20,7 @@ This work was published in the **Springer Proceedings in Mathematics & Statistic
 
 ## 📂 Files Included
 
-- `OptimalAdvertisingExpenditure.pdf` # Final paper
+- `OptimalAdvertisingExpenditure_Proc_COSC2022-1.pdf` # Final paper
 
 ## 📌 Highlights
 
