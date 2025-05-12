@@ -38,7 +38,7 @@ Online_Gaming_Engagement_Analysis/\
 
 ## ✅ Example Output
 
-Accuracy: 0.91
+Accuracy: 0.91\
 Predicted Engagement Level: High
 
 ## 📬 Contact
