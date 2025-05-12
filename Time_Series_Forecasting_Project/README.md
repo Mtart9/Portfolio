@@ -49,4 +49,4 @@ Note: Performance may vary depending on market volatility and the length of the 
 
 Michael Tartamella\
 📧 mtartamella117@gmail.com\
-🔗 linkedin.com/in/michael-tartamella
+🔗 [LinkedIn](https://www.linkedin.com/in/michael-tartamella/)  
