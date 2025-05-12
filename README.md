@@ -8,7 +8,7 @@ This GitHub repository serves as my portfolio, showcasing projects I've develope
 
 ## 📂 Projects
 
-### 🕒 [Time Series Forecasting Project](./Time_Series_Forecasting_Project)
+### 🕒 [Time Series Forecasting Project](./Time_Series_Forecasting_Project)  
 A deep learning project using LSTM networks to forecast the closing prices of the VOO ETF. This project demonstrates:
 - Data retrieval with `yfinance`
 - Feature preprocessing and visualization
@@ -19,13 +19,47 @@ A deep learning project using LSTM networks to forecast the closing prices of th
 
 ---
 
-### 🧬 [biomMetaTartamella](./biomMetaTartamella)
-A custom-built R package created for a bioinformatics meta-analysis project. This project includes:
-- Custom R functions organized as a formal package
-- Documentation and test cases
-- Designed to work with biomarker data from multiple studies
+### 📊 [Multiple Regression Computing](./Multiple_Regression_Computing)  
+An R Markdown–driven exploratory and modeling workflow analyzing gene-environment interactions. Key highlights:
+- Stepwise model selection via AIC/BIC
+- Residual diagnostics and assumption checks
+- Final model comparing environmental and genetic predictors  
+- Clear presentation using `knitr` and publication-quality tables
 
-> **Tech stack:** R, Roxygen2, devtools, knitr
+> **Tech stack:** R, `lm()`, `leaps`, `car`, `knitr`
+
+---
+
+### 🎮 [Online Gaming Engagement Analysis](./Online_Gaming_Engagement_Analysis)  
+An XGBoost classification pipeline predicting player engagement levels from gameplay data. Features include:
+- One-hot encoding of categorical game attributes
+- Train/test split and model tuning
+- Evaluation via confusion matrix, accuracy, precision/recall
+- Interactive user-input demo to predict engagement  
+
+> **Tech stack:** Python, XGBoost, Pandas, Scikit-learn
+
+---
+
+### 📈 [Optimal Advertising Expenditure](./Optimal_Advertising_Expenditure)  
+A mathematical modeling project that finds optimal ad spend over a product’s lifecycle. This work covers:
+- Derivation of optimality conditions via the Maximum Principle
+- Numerical solution and sensitivity analysis in Maple
+- Insights on ramping up vs. curtailing ad budgets as market saturates  
+- Published in *Springer Proceedings in Mathematics & Statistics*
+
+> **Tech stack:** Maple, LaTeX, numerical simulation
+
+---
+
+### 🧬 [biomMetaTartamella](./biomMetaTartamella)  
+A custom-built R package for meta-analysis of biomarker studies. It implements:
+- Automated p-value tests for 2-group and multi-group data
+- Multiple methods for pooling p-values (Fisher, Stouffer, Lancaster, etc.)
+- Permutation-based weighted Fisher and FDR correction
+- Full package structure with vignette, examples, and unit tests
+
+> **Tech stack:** R, `devtools`, `roxygen2`
 
 ---
 
@@ -33,5 +67,3 @@ A custom-built R package created for a bioinformatics meta-analysis project. Thi
 
 - 📧 Email: mtartamella117@gmail.com  
 - 🔗 [LinkedIn](https://www.linkedin.com/in/michael-tartamella/)  
-
----
