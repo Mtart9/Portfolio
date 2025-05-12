@@ -33,4 +33,4 @@ This work was published in the **Springer Proceedings in Mathematics & Statistic
 ## 📬 Contact
 
 📧 Mtartamella117@gmail.com  
-[LinkedIn](https://www.linkedin.com/in/michael-tartamella)
+🔗[LinkedIn](https://www.linkedin.com/in/michael-tartamella)
