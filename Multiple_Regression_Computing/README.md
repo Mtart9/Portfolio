@@ -1,52 +1,47 @@
-📈 Multiple Regression Computing – Michael Tartamella
+📊 Multiple Regression Computing in R
 
-This project explores the construction, evaluation, and interpretation of multiple regression models using R. Through model selection, diagnostic checking, and multicollinearity analysis, the objective is to develop the most effective and statistically sound model to predict a continuous outcome variable.
-🧠 Project Summary
+This project applies multiple linear regression techniques to investigate the relationships between a continuous response variable and several predictors. It involves model selection, diagnostic checking, multicollinearity analysis, and interpretation of results using R.
+📈 Project Overview
 
-This analysis investigates how multiple predictors influence a response variable. The project follows a structured regression workflow that includes:
+-Goal: Build, evaluate, and interpret a multiple regression model
+-Method: Linear regression with backward/forward selection and diagnostics
+-Tools Used: R, RMarkdown
+-Data: Provided as part of an academic project
 
-    Fitting initial full and reduced models
+🛠️ Features
 
-    Performing variable selection using AIC and BIC
+-Full regression modeling workflow in R
+-Variable selection using AIC and BIC criteria
+-Multicollinearity analysis using VIF (Variance Inflation Factor)
+-Diagnostic plots including:
+    -Residual vs. Fitted
+    -Q-Q plots
+-Nested model comparison via ANOVA
 
-    Conducting multicollinearity checks using VIF
+📈 Model Insights
 
-    Evaluating model assumptions with residual and leverage plots
+-Identified and removed redundant predictors
+-Final model met all regression assumptions
+-Demonstrated the importance of checking for leverage and influence points
+-Clear interpretation of coefficient significance and direction
 
-    Comparing nested models via ANOVA
+📂 File Structure
 
-🔍 Techniques Used
+├── Multiple_Regression_Computing.pdf    # Analysis exported as PDF
+├── Multiple_Regression_Computing.Rmd    # Main R Markdown analysis file
+├── data.csv                             # Data analyzed
+├── README.md                            # Project documentation
 
-    Multiple Linear Regression
+📘 What You’ll Learn
 
-    Backward and Forward Selection (AIC/BIC)
+-Best practices for multiple regression modeling in R
+-How to use model selection criteria (AIC/BIC)
+-Techniques to assess multicollinearity
+-Visual and statistical model diagnostics
+-Structuring a clean and reproducible R Markdown report
 
-    Model Diagnostics (Residual plots, leverage, Cook’s distance)
+📬 Contact
 
-    Multicollinearity Analysis (VIF)
-
-    Nested Model Comparison (ANOVA)
-
-📦 Technologies
-
-    Language: R
-
-    Libraries: car, MASS, ggplot2, dplyr, GGally, leaps
-
-📌 Key Insights
-
-    Identified statistically significant predictors using model selection criteria.
-
-    Detected and addressed multicollinearity through VIF analysis.
-
-    Final model provided interpretable coefficients and satisfied key model assumptions.
-
-    Diagnostic plots supported the robustness of the selected model.
-
-🗃️ Files Included
-
-    Michael_Tartamella_Project.Rmd: The full reproducible analysis in R Markdown format.
-
-    README.md: This file.
-
-    If your project uses a dataset, you may want to add a note about its source and structure.
+Michael Tartamella
+📧 mtartamella117@gmail.com
+🔗 LinkedIn
