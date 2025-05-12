@@ -45,4 +45,4 @@ Predicted Engagement Level: High
 
 Michael Tartamella\
 📧 mtartamella117@gmail.com\
-🔗 linkedin.com/in/michael-tartamella
+🔗 [LinkedIn](https://www.linkedin.com/in/michael-tartamella/)  
