@@ -41,7 +41,7 @@ This project applies multiple linear regression techniques to investigate the re
 - Visual and statistical model diagnostics
 - Structuring a clean and reproducible R Markdown report
 
-📬 Contact
+## 📬 Contact
 
 Michael Tartamella
 📧 mtartamella117@gmail.com\
