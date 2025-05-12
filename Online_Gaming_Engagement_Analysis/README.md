@@ -44,6 +44,8 @@ Accuracy: 0.91
 Predicted Engagement Level: High
 
 ---
+## 📬 Contact
 
-**Author**: Michael Tartamella  
-**License**: MIT  
+Michael Tartamella\
+📧 mtartamella117@gmail.com\
+🔗 linkedin.com/in/michael-tartamella
