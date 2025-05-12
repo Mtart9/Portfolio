@@ -1,0 +1,393 @@
+---
+title: 'AMS 578 Regression Analysis: Multiple Regression Computing Project'
+author: "Michael Tartamella"
+date: "05/03/2022"
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+# Abstract
+
+Every day, people all around the world may struggle with mental illness.  These types of illnesses are often difficult to fully understand, yet so many individuals are suffering from them daily.  These issues are often seen especially in college, where students are put under an immense amount of pressure to succeed, which can be very mentally demanding.  This can ultimately lead them to having issues such as depression, anxiety, stress, and much more (McLafferty, 2017).  This makes it imperative for researchers to try to understand what factors potentially give rise to these type of illnesses.  This field of study is difficult for researchers to fully grasp.  In this paper, I plan to hopefully shed some light on the subject of analyzing this type of data.  Hopefully, through my efforts and the efforts of other researchers we collectively begin to better understand the components which create mental illness.
+
+\newpage
+
+# Introduction
+
+The purpose of the exploratory analysis in this paper is to discover and replicate the model used in order to generate our outcome variable $Y$.  In this project I will be performing a lot of major analyzes on our data in order to bring to light the interactions between our response variable vs. all the different interactions possible between our environmental variables and gene variables.  These interactions will include response vs. environmental variables, genes variable, gene-environment variables, gene-gene interactions variables, and possibly interactions which consist of up to four variable interactions among our variables.  One Method we will use is Multiple Linear Regression.  The inspiration for this report comes from the paper "Influence of Life Stress on Depression: Moderation by Polymorphism in the 5-HTT Gene", by Avshalom Caspi, where data similar to mine was analyzed in order to determine the affect of environment factors and genetic factors on depression (Caspi, 2013).  Although, the findings from that study were unable to be replicated from other researchers in the field.
+
+# Variables
+
+$Y -$ Response/outcome variable
+
+$E_1$ to $E_8 -$ Environmental variables for participants
+
+$G_1$ to $G_{30} -$ Genetic independent indicator/dummy variables
+
+# Methodology and Data
+
+Our data was synthetically generated and consists of a total of $2675$ entries of data. These entries of data are complete meaning there is no presence of missing data.  Each entry consists of an outcome variable, eight environmental variables, and thirty indicator variables.  Our goal is to generate a model that best estimates our outcome variable $Y$.  There may also be the presence of up to four-way interactions variables.  There is a total of $240$ possible gene-environment variables, ${30 \choose 2} = 435$ possible gene-gene interaction variables, and up to any possible combination of four-different variables.  The TA used a model to generate our data, therefore I will attempt to best replicate the model used by the TA.
+
+There exists many different statistical methods in which we could use to analyze this data set.  However, in order to best accomplish our task of generating a suitable model to estimate our response variable, I will analyze the data using multiple linear regression with non-indicator and indicator variables.  Multiple linear regression uses a regression model to analyze aspects between variables.  This strategy utilizes more than one independent variable in which we believe affects one dependent variable (Montgomery, 2000, pg. 67).  We will be using this method to test some important characteristics of our data such as normality assumption, analysis of variance, plotting residuals, normal QQ plot, as well as the correlation between our variables.  Using the software language R, I plan to accomplish these tasks and uncover a model which best fits our data.  Additionally, since we have 38 variables, we will consider the Bonferroni-corrected p-value, meaning that when I say that a particular variable is significant, that means that the p-value multiplied by $38$, is still less than $0.01$.
+As a final note regarding our methodology we may also implement the use of box cox or log transforming our data, which we may utilize in order to reduce the skewness of our data.  This can help us get a better understanding of the relationship between our variables.
+
+
+# Analysis of Data
+
+Our first step is to activate the various R packages used in the project and read in our data from the excel file, as seen in Appendix A (1).
+
+Now, I will analyze the data for any missing values by using the summary function, seen in Appendix A (2) 
+
+This function has shown me that the data set is complete and we will not need to impute any data or remove any entries from the data set.  Next, I plan to analyze a regression model one by one using our dependent variable $Y$ vs each of our eight environmental variables.
+
+After analyzing the results found in Appendix A (3), we see that the environmental variables, $E_1, E_6,$ and $E_8$, appear to significantly affect the value of our response variable $Y$.
+
+Next, I will preform a T-test comparing the expected value of Y given that one of our genetic indicator variables is not included vs. expected value of $Y$ given that one of our genetic indicator variables is included.  We will perform this for all thirty genetic/indicator variables.
+
+After analyzing the results found in Appendix A (4), we determine that the only indicator variable which appears to significantly affect the expected value of our outcome variable $Y$ is indicator $G_{21}$.
+
+I will also check to see if raising our environmental variables to the power of $2$ or taking the square root of our environmental variables affects the significance of any of our environmental variables.
+
+Observing the results found in Appendix A (5), it is clear that the act of squaring or taking the square root of any of our environmental variables did not affect which variables appeared to significantly affect our response variable $Y$.
+
+Before trying to model the data only exclusively using these significant variables.  I believe it is essential to check normality assumptions about our model as a whole utilizing every variable, in order to determine if our data needs to be transformed in any way.  Various tests and plots in order to verify assumptions can be seen in Appendix A (6).
+
+The first model assumption to check is the residuals having a normal distribution. As seen from the plot, the residual plot of the full model shows no significant pattern, which leads to the confirmation of the normal distribution assumption for the residuals. There is no significant violation according to the residual plot. The next model assumption to check is that the residuals are uncorrelated. Again, from our residual plot, we do not see any sort of pattern in the plot as it seems that the residuals are distributed completely randomly in these plots. Proving that there is no correlation between the residuals. The next, and final, model assumptions to check is that the residuals have constant variance. By looking at the residual vs. fitted values plot in Appendix A (6), there does not seem to be any noticeable pattern in the plot suggesting that this assumption is fulfilled. Also, observe the QQ plot in Appendix A (6) to see that the residuals fit the QQ line very well, meaning that our model seems to fit a normal distribution well.  Next assumption to check is the error term having a zero mean. As you can see above, the mean of the residuals is an extremely low number, -1.298201e-16, which can be approximated to zero, confirming this assumption.
+
+While every assumption has been fulfilled in regard to our data fitting a normal approximation, I will still check to see if it is necessary to preform a box-cox transformation on our data.  I perform this test in Appendix A (7).
+
+As we can see in the plot found in the Appendix, since our model is within a $95\%$ confidence interval of optimal $\lambda = 1$, we conclude that a box-cox transformation is not necessary.  Our data fits the model well enough that a transformation of our data is not necessary in order to generate valid results.  We have concluded that the data is clean and we do not have any outliers that are skewing our model.  Now I must specify a plan in order to detect the interactions between our numerous variables.  I could construct a model which measures all possible regressions and interactions.  This method would not be very efficient as we have so many variables in data, that we are sure to run into multiple issues regarding multicollinearity and lack of significance.  There also exists stepwise regression methods.  I could use forward selection which involves starting with no variables in the model and adding variables one at a time, checking the significance of the model after each time a variables is introduced.  This method could be very useful. Due to the vastness of the size of our data, it would be easier to start with an empty model and add variables to see if they are significant.  Another possible method is backwards elimination which begins with a model which contains all variables and aims to delete variables one by one until a suitable model is acquired.  It is unrealistic to go start with such a large model and remove only one variable at a time, using data of this size.  What I plan to use is the type of stepwise regression forward regression and rely heavily on the Bayesian information criterion (BIC).  This strategy aims to discover a simple model which aims to narrow the model down to only the essential variables which have a great impact on our data.  When selecting variables for our model, it is possible to increase likelihood through the addition of new parameters, however these new parameters often result in overfitting.  The method Bayesian information criterion solves this issue by creating a penalty term based on the number of parameters in the model.  The formula used is $BIC = -2ln(L) + pln(n)$, where $L$ is maximized value of the likelihood function for the given model, $p$ represents number of free parameters, and $n$ represents number of data points.  This concept of introducing a penalty term based on number of parameters is also seen in the Akaike Information criterion, however for BIC the penalty term has a larger impact on the suggested model (What is Bayesian Information, 2019).  We will now apply forward selection to our model and analyze the BIC value of the suggested models, as seen in Appendix B (1).
+
+For the Bayesian information criterion value a lower value estimates a better model for our data.  Notice how for the model with the lowest BIC value, the adjusted R squared is the highest value out of all the models in the table.  Therefore, if we were to choose a model strictly based on the Bayesian information criterion, It would be $Y = α + β_1E_6 + β_2E_8 + β_3E_1E_8 + β_4E_1G_{21} + β_5E_6E_8$.  Lets denote this as model 1.
+
+However, I believe it is essential to analyze the significance of interactions that may or may not appear in the models displayed in the table.
+
+As expected analyzing this table in Appendix B (2), we see that the only variables in our data which have significant p-values and high t values are $E_1, E_6, E_8$, and $G_{21}$.  Next, I plan to check the significance of variables which include interactions with at most one other variable.
+
+Observing the table in Appendix B (3), it seems that when we include interactions with at most one other variables we begin to lose significance among some of our variables.  In this model we only see significance from variables $E_6$ and $E_8$.  The environment-environment interaction terms and gene-environment terms observed in the table have t-values lower than two.  Therefore, these interaction terms lack significance and should not be included in our model.   Next I will investigate interaction with up to two other variables.
+
+Analyzing this table in Appendix B (4), shows how when we consider a model with interactions with up to two other variables we begin to lose significance among all our variables.  We see every t-value is lower than two and our p-values are not that significant.  Finally, we must investigate the possibility of 4-way interaction terms.
+
+Similar to our situation regarding three-way interaction terms observing table in Appendix B (5), shows us that when we consider four-way interactions between variables we lose significance.  The table shows no variables with significant t-values or significant p-values.
+
+Hence, despite our exhaustive search regarding interactions between variables, it seems the best model to fit our data is one which does not contain any interaction terms.  That being the model which looks like $Y = α + β_1E_1 + β_2E_6 + β_3E_8 + β_4G_{21}$.  Lets denote this as model 2
+
+However, we are also told that it may be possible for our model to contain variables raised to the power of $2$ or the square root of variables.  Thus, we must investigate if a model with contains one of these situations fits our data better than our current model.  I will accomplish this by including all possible variables that are theoretically able to appear in our model into our forward selection method.  Results are seen in Appendix C (1).
+
+
+Analyzing this Bayesian information criterion table, I choose to investigate the variables which appear in the fourth row because this row contains the lowest valued Bayesian information criterion value which indicates that it is the most accurate model to describe our data.  Additionally, the adjusted $R^2$ increase from the model in the fourth row to the model in the fifth row is insignificant.  Now similar to before I can determine if there exist any significant interactions between the variables in this chosen model, which are $E_1, E_6^.5, E_8$, and $G_{21}$.  Again similar to the previous strategy we analyze the possibility of significant interactions between these variables.
+
+
+From this table in Appendix C (2), we see that the four variables we included appear very significant as their t-values are quite high and p-values are approximately zero.  Next we examine possibility of interactions with one other variable.
+
+Analyzing the outcome of this table in Appendix C (3), shows that when we consider two-way interactions, the t-value of most of our variables including interaction terms begin to plummet, meaning that we should not use these terms in our model.  Now we must check possibility of three-way interaction terms.
+
+Observing this table found in Appendix C (4), shows that once we consider the possibility of three-way interaction terms we not only see low t-values, but we also notice that our  p-values are  beginning to show a lack of significance.  Hence, three-way interactions are not suitable for this model.  Finally, we investigate the possibility of up to four way interactions in our model.
+
+Similar to previous result, outcome from Appendix C (5), tells us we do not notice significance in our model when we consider the possibility of up to four-way interactions among our variables.  Hence, we conclude using this method the best model to estimate our response variable would be $Y = α + β_1E_1 + β_2E_6^.5 + β_3E_8 + β_4G_{21}$.  Lets denote this as model 3 and acknowledge this is the same model we chose from the Bayesian information criterion table before we begun analyzing further.
+
+
+# Conclusion
+
+Throughout my investigations we are left with three viable models to represent the expected value of our response variable Y.  Model 1 would be the results from our first table using the Bayesian information criterion table.  This table gave us a model using the terms, $E_6, E_8, E_1E_8, E_1G_{21}$, and $E_6E_8$.  Model 2 would be the results from our first investigation of the variables found in our model 1, which are $E_1, E_6, E_8$, and $G_{21}$.  Our third viable model would be the results from investigating the variables found in our second Bayesian information criterion table, which considered the possibility of all theoretical variables which might be present in our model.  This would be a model which includes variables $E_1, E_6^.5, E_8$, and $G_{21}$.  Now we must compare the viability between these three models and conclude which one best fits our data.  In order to accomplish this I will compare adjusted $R^2$ values, residual standard error, check for multicollinearity issues using the variance inflation factor, and checking the PRESS statistic among these three models.
+
+
+Results from Appendix D (1), show that model 1 gives us Residual standard error of $13.22$ and Adjusted $R^2$ of $0.4734339$.  Although this model has issues with multicollinearity see by examining the values we get from the vif function.  The Press statistic for this model was $468223$.
+
+
+Results from Appendix D (2), show that model 2 gives us Residual standard ettor of $13.21$ and Adjusted $R^2$ of $0.4741244$.  Notice, this model does not have issues regarding multicollinearity seen by examining the low values we get from the vif function.  The Press statistic for this model was $467425.1$.
+
+
+Results from Appendix D (3), show that model 3 gives us Residual standard error of 13.2 and Adjusted $R^2$ of 0.4743192.  Notice, this model similar to the previous model does not have issues regarding multicollinearity seen by examining the low values we get from the vif function.  The Press statistic for this model was $467249.9$.
+
+After comparing  these results I determine that since model 3 displays the lowest Residual standard error, highest adjusted $R^2$, and lowest PRESS statistic out of all the models, I deem this model the best in terms of determining the value of our response variable Y.  Lastly, I will check the necessary assumption regarding this model and formally write the model including all the coefficients.  Various tests and plots in order to verify assumptions can be seen in Appendix D (4).
+
+The first model assumption to check is the residuals having a normal distribution. As seen from the plot, the residual plot of the full model shows no significant pattern, which leads to the confirmation of the normal distribution assumption for the residuals. There is no significant violation according to the residual plot. The next model assumption to check is that the residuals are uncorrelated. Again, from our residual plot, we do not see any sort of pattern in the plot as it seems that the residuals are distributed completely randomly in these plots, proving that there is no correlation between the residuals. The next, and final, model assumptions to check is that the residuals have constant variance. By looking at the residual vs. fitted values plot above, there does not seem to be any noticeable pattern in the plot suggesting that this assumption is fulfilled. Also, observe the QQ plot in Appendix D (4) to see that the residuals fit the QQ line very well meaning that our model seems to fit a normal distribution well.  Next assumption to check is the error term having a zero mean. As you can see above, the mean of the residuals is an extremely low number,1.665335e-16, which can be approximated to zero, confirming this assumption.  Finally, all we must do now is include the coefficients for model 3, in order to formally write the model along with the parameter estimates.  We will find these coefficients in Appendix D (5).
+
+Therefore, my final model utilizing only Environmental variables is:
+
+\[Y = -21.2038 + 3.6773E_1  + 32.6865E_6^.5 + 9.2053E_8\]
+
+Although, my final model period utilizing estimated parameter would be: 
+\[Y = -23.2720 + 3.6740E_1  + 32.7423E_6^.5 + 9.1242E_8 + 6.2752G_{21}\]
+Coefficients for both these models can be seen in Appendix D (5).  Thus, we see Environmental variables $E_1, E_6$ and  $E_8$ have an affect on our response variable variable.  Additionally, genetic variable $G_{21}$ also had an affect on our response variable.  We also acknowledge that we did not discover any statistically significant interactions between any variables in our final model.
+
+Biggest takeaways from our report is that our dependent variable Y, which represents some type of mental illness, is affected by Environmental variables $1, 6$, and $8$ and is affected by the genetic variable $21$.  Additionally, our final model fulfills a common rule when model building which is $n \geq 20p$.  Meaning that since we have $2675$ observations in our data and only four variable in our final model, our model satisfies $2675 \geq 20(5) = 100$. The limitations of my report would be the case where there exist interactions more than four-way interactions or possibly our variables needed to be raised to a power other than $.5$ or $2$.
+
+\newpage
+
+# References
+
+Caspi, A., et al. (2003, July 18). Influence of Life Stress on Depression: Moderation by a Polymorphism in the 5-HTT Gene. Sciencemag.Org. https://blackboard.stonybrook.edu/bbcswebdav/pid-1695608-dt-content-rid-12558879_1/courses/1224-AMS-578-SEC01-48530/Caspi_et_al._2003_Science.pdf
+
+McLafferty, M. (2017, December 13). Mental health, behavioural problems and treatment seeking among students commencing university in Northern Ireland. Journals.Plos.Org.
+https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0188785#pone.0188785.ref001
+
+Montgomery, D. C., Peck, E. A., & Vining, G. G. (2012). Introduction to Linear Regression Analysis. Wiley.
+
+What is Bayesian Information Criterion (BIC)? - Analyttica Datalab. (2019, January 16). Medium. https://medium.com/@analyttica/what-is-bayesian-information-criterion-bic-b3396a894be6
+
+# Supplementary Material
+
+### Appendix A
+
+##### A $(1)$
+```{r,message = FALSE,results='hide',warning=FALSE}
+#Loading in necessary libraries/packages
+library('readxl')
+library('MASS')
+library('leaps')
+library('knitr')
+library('car')
+library('DAAG')
+```
+```{r,results='hide',warning=FALSE}
+#Loading data set, setting variable names
+projectdata <- read.csv("C:/Users/Micha/Desktop/data.csv")
+names(projectdata)<-c('Y','E1','E2','E3','E4','E5','E6','E7','E8','G1','G2','G3','G4','G5','G6','G7','G8','G9','G10','G11','G12','G13','G14','G15','G16','G17','G18','G19','G20','G21','G22','G23','G24','G25','G26','G27','G28','G29','G30')
+attach(projectdata)
+```
+
+##### A $(2)$
+```{r}
+summary(projectdata)
+```
+
+##### A $(3)$
+```{r}
+#Regression model Y vs E1
+mod.E1 <- lm(Y ~ E1, data = projectdata)
+summary(mod.E1)
+#Regression model Y vs E2
+mod.E2 <- lm(Y ~ E2, data = projectdata)
+summary(mod.E2)
+#Regression model Y vs E3
+mod.E3 <- lm(Y ~ E3, data = projectdata)
+summary(mod.E3)
+#Regression model Y vs E4
+mod.E4 <- lm(Y ~ E4, data = projectdata)
+summary(mod.E4)
+#Regression model Y vs E5
+mod.E5 <- lm(Y ~ E5, data = projectdata)
+summary(mod.E5)
+#Regression model Y vs E6
+mod.E6 <- lm(Y ~ E6, data = projectdata)
+summary(mod.E6)
+#Regression model Y vs E7
+mod.E7 <- lm(Y ~ E7, data = projectdata)
+summary(mod.E7)
+#Regression model Y vs E8
+mod.E8 <- lm(Y ~ E8, data = projectdata)
+summary(mod.E8)
+```
+
+##### A $(4)$
+```{r}
+for (i in 1:30) {
+  print("T-test Results for indicator:")
+  print(i)
+  print(t.test(formula = Y ~ get(paste0("G",i))))
+}
+```
+
+##### A $(5)$
+```{r,results='hide',warning=FALSE}
+#For length reasons I have chosen to hide these results.
+E1.squared <- (projectdata$E1)^2
+E2.squared <- (projectdata$E2)^2
+E3.squared <- (projectdata$E3)^2
+E4.squared <- (projectdata$E4)^2
+E5.squared <- (projectdata$E5)^2
+E6.squared <- (projectdata$E6)^2
+E7.squared <- (projectdata$E7)^2
+E8.squared <- (projectdata$E8)^2
+
+mod.E1.squared <- lm(Y ~ E1.squared, data = projectdata)
+summary(mod.E1.squared)
+mod.E2.squared <- lm(Y ~ E2.squared, data = projectdata)
+summary(mod.E2.squared)
+mod.E3.squared <- lm(Y ~ E3.squared, data = projectdata)
+summary(mod.E3.squared)
+mod.E4.squared <- lm(Y ~ E4.squared, data = projectdata)
+summary(mod.E4.squared)
+mod.E5.squared <- lm(Y ~ E5.squared, data = projectdata)
+summary(mod.E5.squared)
+mod.E6.squared <- lm(Y ~ E6.squared, data = projectdata)
+summary(mod.E6.squared)
+mod.E7.squared <- lm(Y ~ E7.squared, data = projectdata)
+summary(mod.E7.squared)
+mod.E8.squared <- lm(Y ~ E8.squared, data = projectdata)
+summary(mod.E8.squared)
+
+E1.sqrt <- (projectdata$E1)^.5
+E2.sqrt <- (projectdata$E2)^.5
+E3.sqrt <- (projectdata$E3)^.5
+E4.sqrt <- (projectdata$E4)^.5
+E5.sqrt <- (projectdata$E5)^.5
+E6.sqrt <- (projectdata$E6)^.5
+E7.sqrt <- (projectdata$E7)^.5
+E8.sqrt <- (projectdata$E8)^.5
+
+mod.E1.sqrt <- lm(Y ~ E1.sqrt, data = projectdata)
+summary(mod.E1.sqrt)
+mod.E2.sqrt <- lm(Y ~ E2.sqrt, data = projectdata)
+summary(mod.E2.sqrt)
+mod.E3.sqrt <- lm(Y ~ E3.sqrt, data = projectdata)
+summary(mod.E3.sqrt)
+mod.E4.sqrt <- lm(Y ~ E4.sqrt, data = projectdata)
+summary(mod.E4.sqrt)
+mod.E5.sqrt <- lm(Y ~ E5.sqrt, data = projectdata)
+summary(mod.E5.sqrt)
+mod.E6.sqrt <- lm(Y ~ E6.sqrt, data = projectdata)
+summary(mod.E6.sqrt)
+mod.E7.sqrt <- lm(Y ~ E7.sqrt, data = projectdata)
+summary(mod.E7.sqrt)
+mod.E8.sqrt <- lm(Y ~ E8.sqrt, data = projectdata)
+summary(mod.E8.sqrt)
+```
+
+##### A $(6)$
+```{r}
+mod.full <- lm(Y ~ (E1+E2+E3+E4+E5+E6+E7+E8+G1+G2+G3+G4+G5+G6+G7+G8+G9+G10+G11+G12+G13+G14+G15+G16+G17+G18+G19+G20+G21+G22+G23+G24+G25+G26+G27+G28+G29+G30)^2, data = projectdata)
+plot(resid(mod.full) ~ fitted(mod.full), main='Residual Plot',ylab='Residuals')
+plot(mod.full$residuals,mod.full$fitted.values,xlab = 'Residuals',ylab='Fitted Values',main = 'Residuals vs Fitted Values')
+qqnorm(residuals(mod.full))  
+qqline(mod.full$residuals)
+```
+
+##### A $(7)$
+```{r}
+bc <- boxcox(mod.full)
+```
+
+### Appendix B
+
+##### B $(1)$
+```{r}
+M <- regsubsets(model.matrix(mod.full)[,-1], Y,nbest = 1 , nvmax=5, method = 'forward', intercept = TRUE )
+temp <- summary(M)
+Var <- colnames(model.matrix(mod.full))
+M_select <- apply(temp$which, 1, function(x) paste0(Var[x], collapse='+'))
+kable(data.frame(cbind(model = M_select, adjR2 = temp$adjr2, BIC = temp$bic)), caption='Model Summary')
+```
+
+##### B $(2)$
+```{r}
+M_1st <- lm(Y ~ E1+E2+E3+E4+E5+E6+E7+E8+G1+G2+G3+G4+G5+G6+G7+G8+G9+G10+G11+G12+G13+G14+G15+G16+G17+G18+G19+G20+G21+G22+G23+G24+G25+G26+G27+G28+G29+G30, data = projectdata)
+temp <- summary(M_1st)
+kable(temp$coefficients[abs(temp$coefficients[,4]) <= 0.01,], caption='Sig Coefficients')
+M_1stage <- lm(Y ~ E1+E2+E3+E4+E5+E6+E7+E8+G1+G2+G3+G4+G5+G6+G7+G8+G9+G10+G11+G12+G13+G14+G15+G16+G17+G18+G19+G20+G21+G22+G23+G24+G25+G26+G27+G28+G29+G30, data=projectdata)
+temp <- summary(M_1stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 3,]
+```
+
+##### B $(3)$
+```{r}
+M_2stage <- lm(Y ~ (E1+E6+E8+G21)^2, data=projectdata)
+temp <- summary(M_2stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 1,]
+```
+
+##### B $(4)$
+```{r}
+M_3stage <- lm(Y ~ (E1+E6+E8+G21)^3, data=projectdata)
+temp <- summary(M_3stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 1,]
+```
+
+##### B $(5)$
+```{r}
+M_4stage <- lm(Y ~ (E1+E6+E8+G21)^4, data=projectdata)
+temp <- summary(M_4stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 1,]
+```
+
+### Appendix C
+
+##### C $(1)$
+```{r}
+mod.full.all <- lm(Y ~ (E1+E2+E3+E4+E5+E6+E7+E8+E1.sqrt+E2.sqrt+E3.sqrt+E4.sqrt+E5.sqrt+E6.sqrt+E7.sqrt+E8.sqrt+E1.squared+E2.squared+E3.squared+E4.squared+E5.squared+E6.squared+E7.squared+E8.squared+G1+G2+G3+G4+G5+G6+G7+G8+G9+G10+G11+G12+G13+G14+G15+G16+G17+G18+G19+G20+G21+G22+G23+G24+G25+G26+G27+G28+G29+G30), data = projectdata)
+M <- regsubsets(model.matrix(mod.full.all)[,-1], Y,nbest = 1 , nvmax=5, method = 'forward', intercept = TRUE )
+temp <- summary(M)
+Var <- colnames(model.matrix(mod.full.all))
+M_select <- apply(temp$which, 1, function(x) paste0(Var[x], collapse='+'))
+kable(data.frame(cbind(model = M_select, adjR2 = temp$adjr2, BIC = temp$bic)), caption='Model Summary')
+```
+
+##### C $(2)$
+```{r}
+M_mainstage <- lm(Y ~ E1+E6.sqrt+E8+G21, data=projectdata)
+temp <- summary(M_mainstage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 3,]
+```
+
+##### C $(3)$
+```{r}
+M_2stage <- lm(Y ~ (E1+E6.sqrt+E8+G21)^2, data=projectdata)
+temp <- summary(M_2stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 1,]
+```
+
+##### C $(4)$
+```{r}
+M_3stage <- lm(Y ~ (E1+E6.sqrt+E8+G21)^3, data=projectdata)
+temp <- summary(M_3stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 1,]
+```
+
+##### C $(5)$
+```{r}
+M_4stage <- lm(Y ~ (E1+E6.sqrt+E8+G21)^4, data=projectdata)
+temp <- summary(M_4stage)
+temp$coefficients[abs(temp$coefficients[,3]) >= 1,]
+```
+
+### Appendix D
+
+##### D $(1)$
+```{r}
+mod.1 <- lm(Y ~ E6+E8+E1:E8+E1:G21+E6:E8,data = projectdata)
+summary(mod.1)
+summary(mod.1)$adj.r.squared
+vif(mod.1)
+press(mod.1)
+```
+
+##### D $(2)$
+```{r}
+mod.2 <- lm(Y ~ E1+E6+E8+G21,data = projectdata)
+summary(mod.2)
+summary(mod.2)$adj.r.squared
+vif(mod.2)
+press(mod.2)
+```
+
+##### D $(3)$
+```{r}
+mod.3 <- lm(Y ~ E1+E6.sqrt+E8+G21,data = projectdata)
+summary(mod.3)
+summary(mod.3)$adj.r.squared
+vif(mod.3)
+press(mod.3)
+```
+
+##### D $(4)$
+```{r}
+plot(resid(mod.3) ~ fitted(mod.3), main='Residual Plot',ylab='Residuals')
+plot(mod.3$residuals,mod.3$fitted.values,xlab = 'Residuals',ylab='Fitted Values',main = 'Residuals vs Fitted Values')
+qqnorm(residuals(mod.3))  
+qqline(mod.3$residuals)
+mean(mod.3$residuals)
+anova(mod.3)
+```
+
+##### D $(5)$
+```{r,}
+mod.onlyE <- lm(Y ~ E1+E6.sqrt+E8,data = projectdata)
+summary(mod.onlyE)
+mod.optimal <- lm(Y ~ E1+E6.sqrt+E8+G21,data = projectdata)
+summary(mod.optimal)
+```
