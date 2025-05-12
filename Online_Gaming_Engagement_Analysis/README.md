@@ -27,7 +27,6 @@ The dataset contains anonymized player statistics with the following features:
 
 ## 📊 Features
 - Interactive prediction tool: users can input new player attributes and receive a predicted engagement level
-- Feature correlation heatmap for insight
 
 ## 📁 Structure
 
