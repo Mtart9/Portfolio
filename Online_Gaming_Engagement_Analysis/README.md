@@ -24,7 +24,6 @@ The dataset contains anonymized player statistics with the following features:
 
 ## 🔧 Tools & Libraries
 - Python (pandas, scikit-learn, xgboost)
-- Seaborn, Matplotlib (for data visualization)
 
 ## 📊 Features
 - Interactive prediction tool: users can input new player attributes and receive a predicted engagement level
@@ -32,10 +31,10 @@ The dataset contains anonymized player statistics with the following features:
 
 ## 📁 Structure
 
-Online_Gaming_Engagement_Analysis/
-├── Online_Gaming_Engagement_Classifier.py # Main script
-├── Online_Gaming_Engagement_Classifier.ipynb # Jupyter notebook version
-├── README.md
+Online_Gaming_Engagement_Analysis/\
+├── Online_Gaming_Engagement_Classifier.py # Main script\
+├── Online_Gaming_Engagement_Classifier.ipynb # Jupyter notebook version\
+├── README.md\
 ├── online_gaming_behavior_dataset.csv # (received from kaggle)
 
 
