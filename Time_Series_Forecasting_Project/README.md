@@ -45,19 +45,6 @@ Note: Performance may vary depending on market volatility and the length of the 
 - Applying data scaling to avoid leakage
 - Interpreting regression-based performance metrics
 
-## 📌 How to Run
-
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/Mtart9/Portfolio.git
-   cd Time_Series_Forecasting_Project
-
-2. Install dependencies:
-pip install -r requirements.txt
-
-3. Run the notebook:
-Open Time_Series_Forecasting.ipynb in Jupyter Notebook or VS Code
-
 ## 📬 Contact
 
 Michael Tartamella\
