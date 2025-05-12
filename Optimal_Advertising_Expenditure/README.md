@@ -24,9 +24,12 @@ This work was published in the **Springer Proceedings in Mathematics & Statistic
 
 ## 📌 Highlights
 
-- Applied linear programming to real-world business decision-making.
-- Demonstrated clear tradeoffs in cost-effectiveness between advertising media.
-- Developed rigorous mathematical documentation and presentation.
+- Developed an optimal control model using the Maximum Principle to determine profit-maximizing advertising strategies across a product's life cycle.
+- Used Maple to solve the system of necessary conditions for optimality and perform sensitivity analysis on the advertisement return rate.
+- Found that an initially moderate advertising strategy—followed by a gradual increase—was most effective early in a product's lifespan.
+- Demonstrated that as market saturation occurs and competition increases, the cost-effectiveness of advertising declines sharply.
+- Showed that reducing advertising spend near the end of a product’s life cycle is necessary to maintain profitability.
+- Provided real-world business insights applicable to dynamic markets such as electronics, where firms must continually innovate and phase out promotion of older models.
 
 ---
 
