@@ -32,9 +32,6 @@ A custom-built R package created for a bioinformatics meta-analysis project. Thi
 ## 📫 Contact
 
 - 📧 Email: mtartamella117@gmail.com  
-- 🌐 [LinkedIn](https://www.linkedin.com/in/michael-tartamella/)  
-- 📍 New York Metropolitan Area  
+- 🔗 [LinkedIn](https://www.linkedin.com/in/michael-tartamella/)  
 
 ---
-
-Thanks for visiting! Feel free to explore the projects, and don't hesitate to reach out or connect with me.
