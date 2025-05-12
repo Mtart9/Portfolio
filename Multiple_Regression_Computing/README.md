@@ -1,4 +1,4 @@
-## 📊 Multiple Regression Computing in R
+# 📊 Multiple Regression Computing
 
 This project applies multiple linear regression techniques to investigate the relationships between a continuous response variable and several predictors. It involves model selection, diagnostic checking, multicollinearity analysis, and interpretation of results using R.
 
@@ -28,9 +28,9 @@ This project applies multiple linear regression techniques to investigate the re
 
 ## 📂 File Structure
 
-├── Multiple_Regression_Computing.pdf    # Analysis exported as PDF
-├── Multiple_Regression_Computing.Rmd    # Main R Markdown analysis file
-├── data.csv                             # Data analyzed
+├── Multiple_Regression_Computing.pdf    # Analysis exported as PDF\
+├── Multiple_Regression_Computing.Rmd    # Main R Markdown analysis file\
+├── data.csv                             # Data analyzed\
 ├── README.md                            # Project documentation
 
 ## 📘 What You’ll Learn
@@ -44,5 +44,5 @@ This project applies multiple linear regression techniques to investigate the re
 📬 Contact
 
 Michael Tartamella
-📧 mtartamella117@gmail.com
+📧 mtartamella117@gmail.com\
 🔗[LinkedIn](https://www.linkedin.com/in/michael-tartamella)
