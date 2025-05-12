@@ -35,7 +35,7 @@ Online_Gaming_Engagement_Analysis/\
 ├── Online_Gaming_Engagement_Classifier.py # Main script\
 ├── Online_Gaming_Engagement_Classifier.ipynb # Jupyter notebook version\
 ├── README.md\
-├── online_gaming_behavior_dataset.csv # (received from kaggle)
+├── online_gaming_behavior_dataset.csv # (received from [Kaggle](https://www.kaggle.com/datasets/rabieelkharoua/predict-online-gaming-behavior-dataset))
 
 ## ✅ Example Output
 
