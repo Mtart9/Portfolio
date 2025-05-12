@@ -37,13 +37,11 @@ Online_Gaming_Engagement_Analysis/\
 ├── README.md\
 ├── online_gaming_behavior_dataset.csv # (received from kaggle)
 
-
 ## ✅ Example Output
 
 Accuracy: 0.91
 Predicted Engagement Level: High
 
----
 ## 📬 Contact
 
 Michael Tartamella\
