@@ -1,6 +1,6 @@
 # 👋 Welcome to Michael Tartamella’s Data Science Portfolio
 
-Hi, I’m **Michael Tartamella** — a data analyst and applied statistics enthusiast with a strong foundation in mathematics and a passion for solving real-world problems through data. I enjoy building models, uncovering insights, and applying statistical thinking across diverse domains.
+Hi, I’m **Michael Tartamella** — a data scientist and applied mathematics enthusiast with a strong foundation in statistics and a passion for solving real-world problems through data. I enjoy building models, uncovering insights, and applying statistical thinking across diverse domains.
 
 This GitHub repository serves as my portfolio, showcasing projects I've developed using Python, R, and statistical tools. I’m continuously learning and adding new work as I grow my skillset.
 
