@@ -63,7 +63,7 @@ A custom-built R package for meta-analysis of biomarker studies. It implements:
 
 ---
 
-### 📍 [S&P 500 Dashboard: Market, Sector & Geography Insights](./SP500_Dashboard_Tableau)  
+### 📍 [S&P 500 Dashboard: Market, Sector & Geography Insights](./S&P500_Vizualization)  
 An interactive Tableau dashboard analyzing the S&P 500 index using custom-collected and enriched data. This project includes:
 - Web scraping tickers from Wikipedia and collecting financial data via `yfinance`
 - Cleaning and merging datasets using Pandas and Excel
