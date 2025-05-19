@@ -18,7 +18,7 @@ This project provides a dynamic visualization of key metrics from companies in t
 
 1. **Web Scraping**: Scraped ticker symbols and metadata of S&P 500 companies from Wikipedia.
 2. **Data Enrichment**: Used the `yfinance` Python library to collect market cap, dividend yield, closing prices, and other financials.
-3. **Data Cleaning**: Cleaned and structured the dataset using Pandas, with some formatting in Excel.
+3. **Data Cleaning**: Cleaned and structured the dataset using pandas, with some formatting in Excel.
 4. **Visualization**: Imported the cleaned dataset into Tableau to build an interactive dashboard.
 
 ## 📊 Dashboard Highlights
