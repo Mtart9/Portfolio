@@ -63,6 +63,18 @@ A custom-built R package for meta-analysis of biomarker studies. It implements:
 
 ---
 
+### 📍 [S&P 500 Dashboard: Market, Sector & Geography Insights](./SP500_Dashboard_Tableau)  
+An interactive Tableau dashboard analyzing the S&P 500 index using custom-collected and enriched data. This project includes:
+- Web scraping tickers from Wikipedia and collecting financial data via `yfinance`
+- Cleaning and merging datasets using Pandas and Excel
+- Visualizing key insights including market cap, sector distribution, dividend yields, and geographic headquarters
+- Interactivity through state-level filtering and dynamic tooltips
+
+> **Tech stack:** Python (pandas, yfinance), Excel, Tableau 
+> **📊 Live Demo:** [View on Tableau Public](https://public.tableau.com/app/profile/michael.tartamella/viz/SP500_Vizualization/SP500InsightsMarketCapLocationandSectorAnalysis?publish=yes)
+
+---
+
 ## 📫 Contact
 
 - 📧 Email: mtartamella117@gmail.com  
