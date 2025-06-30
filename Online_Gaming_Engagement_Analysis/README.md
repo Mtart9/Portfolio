@@ -47,12 +47,11 @@ Dataset source: [Kaggle - Predict Online Gaming Behavior Dataset](https://www.ka
 
 ## 📁 Project Structure
 
-```
-Online_Gaming_Engagement_Analysis/
-├── Online_Gaming_Engagement_Classifier.py    # Main training and evaluation script
-├── online_gaming_behavior_dataset.csv        # Source dataset
+
+├── Online_Gaming_Engagement_Classifier.py    # Main training and evaluation script\
+├── online_gaming_behavior_dataset.csv        # Source dataset\
 ├── README.md
-```
+
 
 ## ✅ Sample Output
 
