@@ -31,11 +31,11 @@ An R Markdown–driven exploratory and modeling workflow analyzing gene-environm
 ---
 
 ### 🎮 [Online Gaming Engagement Analysis](./Online_Gaming_Engagement_Analysis)  
-An XGBoost classification pipeline predicting player engagement levels from gameplay data. Features include:
-- One-hot encoding of categorical game attributes
-- Train/test split and model tuning
-- Evaluation via confusion matrix, accuracy, precision/recall
-- Interactive user-input demo to predict engagement  
+An XGBoost classification pipeline for predicting player engagement levels using gameplay and demographic data. Key highlights:
+- Encodes categorical variables using one-hot and label encoding
+- Uses stratified train-test split and GridSearchCV for hyperparameter tuning
+- Evaluated with confusion matrix, accuracy, and classification report
+- Focused on model performance and reproducibility
 
 > **Tech stack:** Python, XGBoost, Pandas, Scikit-learn
 
