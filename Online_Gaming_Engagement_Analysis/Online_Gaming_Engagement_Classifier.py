@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold, GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
@@ -32,12 +32,34 @@ y = df['EngagementLevel_encoded'] # This is the target variable
 print(y)
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
+# Stratified cross-validation for XGBoost
+cv = StratifiedKFold(n_splits=4, shuffle=True, random_state=42)
 
-# Initialize and train XGBoost model
-model = XGBClassifier(eval_metric='mlogloss')  # For classification
-model.fit(X_train, y_train)
+# Define parameter grid for XGBoost
+grid_param = {
+    'n_estimators': [100, 200],
+    'max_depth': [3, 5, 7],
+    'learning_rate': [0.05, 0.1, 0.2],
+    'subsample': [0.8, 1.0]
+}
+
+grid_search = GridSearchCV(
+    XGBClassifier(eval_metric='mlogloss'),
+    grid_param,
+    cv=cv,
+    scoring='accuracy',
+    n_jobs=-1,
+    verbose=1
+)
+grid_search.fit(X_train, y_train)
+
+print(f"Best parameters: {grid_search.best_params_}")
+print(f"Best cross-validation score: {grid_search.best_score_:.4f}")
+
+# Use the best estimator for final training and prediction
+model = grid_search.best_estimator_
 
 # Make predictions
 y_pred = model.predict(X_test)
@@ -46,50 +68,3 @@ y_pred = model.predict(X_test)
 print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
 print("\nClassification Report:\n", classification_report(y_test, y_pred))
 print("Accuracy:", accuracy_score(y_test, y_pred))
-
-print("\n--- Predict Engagement Level ---")
-input_data = {}
-
-# --- Include all numeric features used in training ---
-input_data['PlayTimeHours'] = float(input("Enter PlayTimeHours: "))
-input_data['SessionsPerWeek'] = int(input("Enter SessionsPerWeek: "))
-input_data['AvgSessionDurationMinutes'] = float(input("Enter AvgSessionDurationMinutes: "))
-input_data['PlayerLevel'] = int(input("Enter PlayerLevel: "))
-input_data['AchievementsUnlocked'] = int(input("Enter AchievementsUnlocked: "))
-input_data['Age'] = int(input("Enter Age: "))
-input_data['InGamePurchases_1'] = int(input("Did the player make in-game purchases? (1=yes, 0=no): "))
-
-# --- Categorical dummy inputs ---
-
-# Gender
-gender = input("Is the player Male? (1=yes, 0=no): ").strip()
-input_data['Gender_Male'] = int(gender)
-
-# Location
-location = input("Where is the player from? (Europe/Other/USA): ").strip().lower()
-input_data['Location_Europe'] = 1 if location == 'europe' else 0
-input_data['Location_Other'] = 1 if location == 'other' else 0
-input_data['Location_USA'] = 1 if location == 'usa' else 0
-
-# GameGenre
-genre = input("What is the game genre? (RPG/Simulation/Sports/Strategy/Other): ").strip().lower()
-input_data['GameGenre_RPG'] = 1 if genre == 'rpg' else 0
-input_data['GameGenre_Simulation'] = 1 if genre == 'simulation' else 0
-input_data['GameGenre_Sports'] = 1 if genre == 'sports' else 0
-input_data['GameGenre_Strategy'] = 1 if genre == 'strategy' else 0
-input_data['GameGenre_Other'] = 1 if genre == 'other' else 0
-
-# GameDifficulty
-difficulty = input("What is the game difficulty? (Easy/Medium/Hard): ").strip().lower()
-input_data['GameDifficulty_Easy'] = 1 if difficulty == 'easy' else 0
-input_data['GameDifficulty_Medium'] = 1 if difficulty == 'medium' else 0
-input_data['GameDifficulty_Hard'] = 1 if difficulty == 'hard' else 0
-
-# --- Convert to DataFrame with matching column order ---
-user_df = pd.DataFrame([input_data], columns=X.columns)
-
-# --- Predict and decode label ---
-user_pred = model.predict(user_df)
-predicted_label = label_encoder.inverse_transform(user_pred)[0]
-
-print(f"\n✅ Predicted Engagement Level: {predicted_label}")
