@@ -32,7 +32,6 @@ Note: Performance may vary depending on market volatility and the length of the 
 
 ## 📂 File Structure
 
-├── Time_Series_Forecasting.ipynb  # Jupyter notebook version of code for Readability\
 ├── Time_Series_Forecasting.py     # Python code and analysis\
 ├── Prediction_Plot.png            # Saved prediction plot\
 ├── README.md                      # Project documentation
